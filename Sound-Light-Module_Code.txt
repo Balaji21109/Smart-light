@@ -1,0 +1,26 @@
+// set variables
+int sensorValue=0;
+int ledPin = 13;
+int speakerPin = 11;
+void setup()
+{
+  
+  pinMode(speakerPin, OUTPUT);
+  
+  pinMode(ledPin, OUTPUT);
+  // starts the serial monitor
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  
+  tone(speakerPin, 500);
+  sensorValue = digitalRead(speakerPin);
+  // print the sensor reading so you know its range
+  Serial.println(sensorValue);
+  
+ 
+  digitalWrite(ledPin, sensorValue);
+  delay(200); // Wait for 200 millisecond(s)
+}
