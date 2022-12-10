@@ -1,28 +1,17 @@
-// set variables
-int sensorValue = 0;
+int intialSensorValue = 0;
+void loop()
+{
+  intialSensorValue = analogRead(A0);
+  Serial.println(intialSensorValue);
+  int fade = map(intialSensorValue, 54, 974, 255, 0);
+  Serial.println(fade);
+  analogWrite(13, fade);
+  delay(100); 
+}
 
 void setup()
 {
-  // pin for ldr
   pinMode(A0, INPUT);
-  // pin for LED
   pinMode(13, OUTPUT);
-  // starts the serial monitor
   Serial.begin(9600);
-}
-
-void loop()
-{
-  //54-974
-  // read the value from the sensor
-  sensorValue = analogRead(A0);
-  // print the sensor reading so you know its range
-  Serial.println(sensorValue);
-  
-  // map the sensor reading to a range for the LED
-  int fade = map(sensorValue, 54, 974, 255, 0);
-  Serial.println(fade);
-  // 
-  analogWrite(13, fade);
-  delay(100); // Wait for 100 millisecond(s)
 }
